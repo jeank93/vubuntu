@@ -42,17 +42,8 @@ RUN rm -rf /etc/apt/sources.list && \
 	python3 \
 	python3-pip \
 	python-is-python3 \
-	perl \
-	ruby \
-	golang \
-	lua5.3 \
-	scala \
-	mono-complete \
-	r-base \
 	default-jre \
 	default-jdk \
-	clojure \
-	php \
 	firefox \
 	gnome-terminal \
 	gnome-calculator \
@@ -90,24 +81,10 @@ RUN rm -rf /etc/apt/sources.list && \
 #NoVNC
 	cp /usr/share/novnc/vnc.html /usr/share/novnc/index.html && \
 	openssl req -new -newkey rsa:4096 -days 36500 -nodes -x509 -subj "/C=IN/ST=Maharastra/L=Private/O=Dis/CN=www.google.com" -keyout /etc/ssl/novnc.key  -out /etc/ssl/novnc.cert && \
-#VS Code
-	wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg && \
-	install -o root -g root -m 644 packages.microsoft.gpg /etc/apt/trusted.gpg.d/ && \
-	sh -c 'echo "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/trusted.gpg.d/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" > /etc/apt/sources.list.d/vscode.list' && \
-	rm -f packages.microsoft.gpg && \
-	apt install apt-transport-https && \
-	apt update && \
-	apt install code -y && \
-	cd /usr/bin && \
-#Brave
-	curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg && \
-	echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg arch=amd64] https://brave-browser-apt-release.s3.brave.com/ stable main"|tee /etc/apt/sources.list.d/brave-browser-release.list && \
-	apt update && \
-	apt install brave-browser -y && \
 #PeaZip
-	wget https://github.com/peazip/PeaZip/releases/download/7.9.0/peazip_7.9.0.LINUX.x86_64.GTK2.deb && \
-	dpkg -i peazip_7.9.0.LINUX.x86_64.GTK2.deb && \
-	rm -rf peazip_7.9.0.LINUX.x86_64.GTK2.deb && \
+	wget https://github.com/peazip/PeaZip/releases/download/8.0.0/peazip_8.0.0.LINUX.x86_64.GTK2.deb && \
+	dpkg -i peazip_8.0.0.LINUX.x86_64.GTK2.deb && \
+	rm -rf peazip_8.0.0.LINUX.x86_64.GTK2.deb && \
 #Sublime
 	curl -fsSL https://download.sublimetext.com/sublimehq-pub.gpg | apt-key add - && \
 	add-apt-repository "deb https://download.sublimetext.com/ apt/stable/" && \
@@ -116,8 +93,8 @@ RUN rm -rf /etc/apt/sources.list && \
 	chmod +x /app/ngrok_install.sh && \
 	/app/ngrok_install.sh && \
 #Telegram
-	wget https://updates.tdesktop.com/tlinux/tsetup.2.7.4.tar.xz -P /tmp && \
-	tar -xvf /tmp/tsetup.2.7.4.tar.xz -C /tmp && \
+	wget https://updates.tdesktop.com/tlinux/tsetup.2.8.1.tar.xz -P /tmp && \
+	tar -xvf /tmp/tsetup.2.8.1.tar.xz -C /tmp && \
 	mv /tmp/Telegram/Telegram /usr/bin/telegram && \
 #PowerShell
 	wget -q https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb -P /tmp && \
